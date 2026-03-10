@@ -2,7 +2,7 @@
   "name": "e-babel",
   "productName": "e-babel",
   "version": "1.0.0",
-  "description": "Open source e-book solution",
+  "description": "Human-made E-book library and reader with local TTS",
   "main": "./out/main/index.js",
   "homepage": "https://e-babel.app",
   "private": true,
@@ -12,7 +12,8 @@
     "book",
     "epub",
     "reader",
-    "audiobook"
+    "audiobook",
+    "human-made"
   ],
   "author": {
     "name": "Erol Umut '0x0kebab' Atalay",

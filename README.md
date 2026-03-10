@@ -1,5 +1,6 @@
 # E-Babel
 
+Human-made E-book library and reader with local TTS
 
 ## Project Setup
 
