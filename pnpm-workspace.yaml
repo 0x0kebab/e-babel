@@ -2,3 +2,5 @@ nodeLinker: hoisted
 
 onlyBuiltDependencies:
   - electron
+  - electron-winstaller
+  - esbuild
