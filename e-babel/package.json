@@ -1,25 +1,10 @@
 {
   "name": "e-babel",
-  "productName": "e-babel",
   "version": "1.0.0",
-  "description": "Open source e-book solution",
+  "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
-  "homepage": "https://e-babel.app",
-  "private": true,
-  "keywords": [
-    "e-book",
-    "tts",
-    "book",
-    "epub",
-    "reader",
-    "audiobook"
-  ],
-  "author": {
-    "name": "Erol Umut '0x0kebab' Atalay",
-    "email": "251644128+0x0kebab@users.noreply.github.com"
-  },
-  "license": "GPL-3.0-only",
-  "packageManager": "pnpm@10.30.0",
+  "author": "example.com",
+  "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
