@@ -16,5 +16,8 @@
   ],
   "author": "Erol Umut '0x0kebab' Atalay",
   "license": "GPL-3.0-only",
-  "packageManager": "pnpm@10.30.0"
+  "packageManager": "pnpm@10.30.0",
+  "devDependencies": {
+    "electron": "^40.8.0"
+  }
 }
