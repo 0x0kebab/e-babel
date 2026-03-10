@@ -1,0 +1,20 @@
+{
+  "name": "e-babel",
+  "version": "1.0.0",
+  "description": "Open source e-book solution",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "e-book",
+    "tts",
+    "book",
+    "epub",
+    "reader",
+    "audiobook"
+  ],
+  "author": "Erol Umut '0x0kebab' Atalay",
+  "license": "GPL-3.0-only",
+  "packageManager": "pnpm@10.30.0"
+}
