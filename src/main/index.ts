@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { readdirSync } from 'fs'
 
 function createWindow(): void {
   // Create the browser window.
@@ -49,8 +50,15 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  ipcMain.on('install', (event, step, data) => {
+    console.log(step, data)
+
+    let contents = [...readdirSync(data, { recursive: true })]
+
+    contents = contents.filter((v) => v.toString().startsWith('.'))
+
+    event.reply('asynchronous-reply', JSON.stringify(contents))
+  })
 
   createWindow()
 
