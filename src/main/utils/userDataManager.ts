@@ -21,7 +21,7 @@ export default class UserDataManager {
    * will check for if user data file is present, if not, create
    */
   async init(app: Electron.App): Promise<void> {
-    this.userDataPath = path.join(app.getPath('appData'), DEFAULT_USER_DATA_FILENAME)
+    this.userDataPath = path.join(app.getPath('sessionData'), DEFAULT_USER_DATA_FILENAME)
     try {
       await readFile(this.userDataPath)
     } catch (error: unknown) {
