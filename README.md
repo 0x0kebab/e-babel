@@ -2,6 +2,8 @@
 
 Human-made E-book library and reader with local TTS
 
+> Currently project in development, it is not ready to use
+
 ## Project Setup
 
 ### Install
