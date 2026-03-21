@@ -3,6 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import UserDataManager, { MANAGER_KEY } from './utils/userDataManager'
+import { readdir } from 'fs/promises'
 
 const userDataManager = new UserDataManager()
 
@@ -55,17 +56,28 @@ app.whenReady().then(async () => {
 
   await userDataManager.init(app)
 
-  ipcMain.on('install', async (event, step, data) => {
+  ipcMain.on('install', async (_event, step, data) => {
     console.log(step, data)
 
     await userDataManager.write(MANAGER_KEY.BOOKS_PATH, String(data))
-    console.log(await userDataManager.read())
+  })
 
-    /*let contents = [...readdirSync(data, { recursive: true })]
+  ipcMain.handle('load-prefs', async () => {
+    return await userDataManager.read()
+  })
 
-    contents = contents.filter((v) => v.toString().startsWith('.'))
+  ipcMain.handle('load-books', async () => {
+    const config = await userDataManager.read()
 
-    event.reply('asynchronous-reply', JSON.stringify(contents))*/
+    console.log(config['BOOKS_PATH'])
+
+    const contents = [
+      ...(await readdir(config['BOOKS_PATH'], {
+        recursive: true
+      }))
+    ]
+
+    return contents.filter((v) => !v.toString().startsWith('.'))
   })
 
   createWindow()
