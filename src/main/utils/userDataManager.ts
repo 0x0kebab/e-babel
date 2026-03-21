@@ -4,13 +4,11 @@ import path from 'node:path'
 const DEFAULT_USER_DATA_FILENAME = 'babel-user.json'
 
 export enum MANAGER_KEY {
-  INSTALL_STEP = 'INSTALL_STEP',
   BOOKS_PATH = 'BOOKS_PATH'
 }
 
-type UserDataRecord = {
-  [MANAGER_KEY.INSTALL_STEP]: number
-  [MANAGER_KEY.BOOKS_PATH]: string | null
+export type UserDataRecord = {
+  [MANAGER_KEY.BOOKS_PATH]: string
 }
 
 export default class UserDataManager {
@@ -29,8 +27,7 @@ export default class UserDataManager {
         writeFile(
           this.userDataPath,
           JSON.stringify({
-            INSTALL_STEP: 0,
-            BOOKS_PATH: null
+            BOOKS_PATH: ''
           })
         )
       }
