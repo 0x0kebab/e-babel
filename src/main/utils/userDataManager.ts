@@ -45,7 +45,8 @@ export default class UserDataManager {
   }
 
   /**
-   * dynamically typed so we can see if we send right type of value
+   * will check for if user data file is present, if not, throw error
+   * if present, updates user data file
    */
   async write<K extends MANAGER_KEY>(key: K, value: UserDataRecord[K]): Promise<void> {
     if (!this.userDataPath) {
