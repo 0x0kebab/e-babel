@@ -1,5 +1,4 @@
 import { useState } from 'react'
-
 function Home(): React.JSX.Element {
   const [books, setBooks] = useState([] as Array<string>)
 
@@ -13,7 +12,11 @@ function Home(): React.JSX.Element {
       <h2>Here are your books</h2>
 
       {books.map((v) => {
-        return <p key={v}>{v}</p>
+        return (
+          <a key={v} href={'file://' + { v }}>
+            {v.split(/[\\/]/).pop()}
+          </a>
+        )
       })}
     </>
   )
