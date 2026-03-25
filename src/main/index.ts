@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import UserDataManager, { MANAGER_KEY } from './utils/userDataManager'
 import { readdir } from 'fs/promises'
+import path from 'path'
 
 const userDataManager = new UserDataManager()
 
@@ -77,7 +78,9 @@ app.whenReady().then(async () => {
       }))
     ]
 
-    return contents.filter((v) => !v.toString().startsWith('.'))
+    return contents
+      .filter((v) => !v.toString().startsWith('.') && v.toString().endsWith('.pdf'))
+      .map((v) => path.join(config[MANAGER_KEY.BOOKS_PATH], v))
   })
 
   createWindow()
