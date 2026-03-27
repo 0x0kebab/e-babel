@@ -9,7 +9,12 @@ function App(): React.JSX.Element {
     setLocationOfBooks(v['BOOKS_PATH'])
   })
 
-  return <>{locationOfBooks == '' ? <Install /> : <Home />}</>
+  return (
+    <>
+      <button>Back</button>
+      <div>{locationOfBooks == '' ? <Install /> : <Home />}</div>
+    </>
+  )
 }
 
 export default App

@@ -6,6 +6,7 @@ declare global {
     api: {
       loadConfig: Promise<UserDataRecord>
       loadBooks: Promise<Array<string>>
+      loadBook: (bookPath: string) => Promise<string>
     }
   }
 }

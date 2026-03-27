@@ -39,6 +39,12 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
+    "@embedpdf/core": "^2.10.1",
+    "@embedpdf/engines": "^2.10.1",
+    "@embedpdf/plugin-document-manager": "^2.10.1",
+    "@embedpdf/plugin-render": "^2.10.1",
+    "@embedpdf/plugin-scroll": "^2.10.1",
+    "@embedpdf/plugin-viewport": "^2.10.1",
     "@tailwindcss/vite": "^4.2.1",
     "electron-updater": "^6.3.9",
     "tailwindcss": "^4.2.1"

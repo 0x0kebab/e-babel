@@ -3,7 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import UserDataManager, { MANAGER_KEY } from './utils/userDataManager'
-import { readdir } from 'fs/promises'
+import { readdir, readFile } from 'fs/promises'
 import path from 'path'
 
 const userDataManager = new UserDataManager()
@@ -18,8 +18,7 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false,
-      devTools: true
+      sandbox: false
     }
   })
 
@@ -58,8 +57,6 @@ app.whenReady().then(async () => {
   await userDataManager.init(app)
 
   ipcMain.on('install', async (_event, step, data) => {
-    console.log(step, data)
-
     await userDataManager.write(MANAGER_KEY.BOOKS_PATH, String(data))
   })
 
@@ -70,8 +67,6 @@ app.whenReady().then(async () => {
   ipcMain.handle('load-books', async () => {
     const config = await userDataManager.read()
 
-    console.log(config['BOOKS_PATH'])
-
     const contents = [
       ...(await readdir(config['BOOKS_PATH'], {
         recursive: true
@@ -81,6 +76,15 @@ app.whenReady().then(async () => {
     return contents
       .filter((v) => !v.toString().startsWith('.') && v.toString().endsWith('.pdf'))
       .map((v) => path.join(config[MANAGER_KEY.BOOKS_PATH], v))
+  })
+
+  ipcMain.handle('load-book', async (_event, bookPath: string) => {
+    bookPath = bookPath.replaceAll('../', '').replaceAll('..\\', '')
+
+    const file = await readFile(bookPath, { encoding: 'base64' })
+
+    console.log(file)
+    return file
   })
 
   createWindow()

@@ -3,7 +3,8 @@ import { electronAPI } from '@electron-toolkit/preload'
 // Custom APIs for renderer
 const api = {
   loadConfig: ipcRenderer.invoke('load-prefs'),
-  loadBooks: ipcRenderer.invoke('load-books')
+  loadBooks: ipcRenderer.invoke('load-books'),
+  loadBook: (bookPath: string) => ipcRenderer.invoke('load-book', bookPath)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
